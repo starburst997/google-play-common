@@ -47,7 +47,7 @@ namespace Google.Play.Common.LoadingScreen
 
         // Number of attempts before we show the user a retry button.
         private const int InitialAttemptCount = 3;
-        private AssetBundle _bundle;
+        //private AssetBundle _bundle;
         private int _assetBundleRetrievalAttemptCount;
         private float _maxLoadingBarProgress;
         private bool _downloading;
@@ -93,7 +93,7 @@ namespace Google.Play.Common.LoadingScreen
 
                 yield return GetAssetBundle(AssetBundleUrl);
 
-                if (_bundle != null)
+                //if (_bundle != null)
                 {
                     break;
                 }
@@ -101,7 +101,7 @@ namespace Google.Play.Common.LoadingScreen
                 yield return new WaitForSeconds(0.5f);
             }
 
-            if (_bundle == null)
+            /*if (_bundle == null)
             {
                 ShowRetryButton();
                 _downloading = false;
@@ -112,12 +112,12 @@ namespace Google.Play.Common.LoadingScreen
             var installStartFill = Mathf.Max(LoadingBar.AssetBundleDownloadToInstallRatio, _maxLoadingBarProgress);
             yield return LoadingBar.FillUntilDone(sceneLoadOperation, installStartFill, 1f, false);
 
-            _downloading = false;
+            _downloading = false;*/
         }
 
         private IEnumerator GetAssetBundle(string assetBundleUrl)
         {
-            UnityWebRequest webRequest;
+            /*UnityWebRequest webRequest;
             var downloadOperation = StartAssetBundleDownload(assetBundleUrl, out webRequest);
 
             yield return LoadingBar.FillUntilDone(downloadOperation,
@@ -130,8 +130,10 @@ namespace Google.Play.Common.LoadingScreen
             }
             else
             {
-                _bundle = DownloadHandlerAssetBundle.GetContent(webRequest);
-            }
+                //_bundle = DownloadHandlerAssetBundle.GetContent(webRequest);
+            }*/
+
+            yield break;
         }
 
         private void ShowRetryButton()
@@ -156,7 +158,7 @@ namespace Google.Play.Common.LoadingScreen
 #endif
         }
 
-        private static AsyncOperation StartAssetBundleDownload(string assetBundleUrl, out UnityWebRequest webRequest)
+        /*private static AsyncOperation StartAssetBundleDownload(string assetBundleUrl, out UnityWebRequest webRequest)
         {
 #if UNITY_2018_1_OR_NEWER
             webRequest = UnityWebRequestAssetBundle.GetAssetBundle(assetBundleUrl);
@@ -164,6 +166,6 @@ namespace Google.Play.Common.LoadingScreen
             webRequest = UnityWebRequest.GetAssetBundle(assetBundleUrl);
 #endif
             return webRequest.SendWebRequest();
-        }
+        }*/
     }
 }
